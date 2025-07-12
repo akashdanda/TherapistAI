@@ -4,6 +4,7 @@ import {Routes, Route, useNavigate, Navigate, BrowserRouter} from 'react-router-
 import Home from './pages/Home';
 import Dashboard from './pages/Dashboard';
 import TherapyChat from './components/TherapyChat';
+import ChatHistory from './components/ChatHistory';
 import { onAuthStateChanged } from 'firebase/auth';
 import { auth } from './firebase';
 function App() {
@@ -23,6 +24,9 @@ function App() {
       <Route path ="/login" element = {<Auth />}/>
       <Route path="/chat" element={
           user ? <TherapyChat /> : <Navigate to="/login" replace />
+        } />
+      <Route path="/history" element={
+          user ? <ChatHistory /> : <Navigate to="/login" replace />
         } />
         <Route path="/dashboard" element={
           user ? <Dashboard /> : <Navigate to="/login" replace />
