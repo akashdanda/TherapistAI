@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { getAuth, onAuthStateChanged } from 'firebase/auth';
+import { Link } from 'react-router-dom'; 
 import '../styles/ChatHistory.css'
 function ChatHistory() {
   const [messages, setMessages] = useState([]);
@@ -41,6 +42,7 @@ function ChatHistory() {
   return (
     <div className="chat-history-container">
       <h2>Chat History</h2>
+      <Link to="/chat" className="back-to-chat-link">← Back to Chat</Link> {/* Add this line */}
       {messages.length === 0 ? (
         <p className="no-messages">No previous messages.</p>
       ) : (

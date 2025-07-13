@@ -71,3 +71,15 @@ body {
   background-color: #444;
   border-radius: 8px;
 }
+
+.back-to-chat-link {
+  display: inline-block;
+  margin-bottom: 1rem;
+  color: #66b2ff;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.back-to-chat-link:hover {
+  text-decoration: underline;
+}
