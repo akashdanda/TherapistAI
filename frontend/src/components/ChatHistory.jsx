@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { getAuth, onAuthStateChanged } from 'firebase/auth';
-
+import '../styles/ChatHistory.css'
 function ChatHistory() {
   const [messages, setMessages] = useState([]);
 
@@ -39,10 +39,10 @@ function ChatHistory() {
   }, []);
 
   return (
-    <div>
+    <div className="chat-history-container">
       <h2>Chat History</h2>
       {messages.length === 0 ? (
-        <p>No previous messages.</p>
+        <p className="no-messages">No previous messages.</p>
       ) : (
         messages.map((msg, index) => {
           const content =
@@ -51,9 +51,9 @@ function ChatHistory() {
               : msg.content?.text ?? JSON.stringify(msg.content);
 
           return (
-            <p key={index}>
+            <div key={index} className="chat-message">
               <strong>{msg.role}:</strong> {content}
-            </p>
+            </div>
           );
         })
       )}

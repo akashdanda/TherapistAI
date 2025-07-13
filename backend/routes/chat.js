@@ -6,7 +6,7 @@ import { db } from '../firebase/adminInit.js';
 const router = express.Router();
 
 const openai = new OpenAI({
-    apiKey: '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'
+    apiKey: process.env.OPENAI_API_KEY
 });
 // sending chat POST
 router.post('/chat', authFirebaseUser, async (req, res) => {

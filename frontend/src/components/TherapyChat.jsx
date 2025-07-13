@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import SignOut from './SignOut';
 import { getAuth } from 'firebase/auth';
 import { Link } from "react-router-dom";
+import '../styles/TherapyChat.css'
 
 function TherapyChat() {
     const [messages, setMessages] = useState([
@@ -49,27 +50,37 @@ function TherapyChat() {
         }
     };
 
-    return (
-        <div>
-            <div>
-              <h1>Chat with Therapist</h1>
+   return (
+        <div className="therapy-chat-container">
+            <h1>Chat with Therapist</h1>
+            
+            <div className="message-box">
                 {messages.map((msg, index) => (
-                    <p key={index}><strong>{msg.role}:</strong> {msg.content}</p>
+                    <div key={index} className={`chat-message ${msg.role}`}>
+                        <strong>{msg.role}:</strong> {msg.content}
+                    </div>
                 ))}
             </div>
 
-            <input
-                type="text"
-                value={input}
-                onChange={(e) => setInput(e.target.value)}
-                placeholder="Type a message..."
-            />
-            <button onClick={handleSend} disabled={loading}>
-                {loading ? 'Sending...' : 'Send'}
-            </button>
-            <SignOut />
-            <br />
-            <Link to = "/history">Chat History</Link>
+            <div className="input-section">
+                <input
+                    type="text"
+                    value={input}
+                    onChange={(e) => setInput(e.target.value)}
+                    placeholder="Type a message..."
+                    disabled={loading}
+                />
+                <button onClick={handleSend} disabled={loading || !input.trim()}>
+                    {loading ? 'Sending...' : 'Send'}
+                </button>
+            </div>
+
+            <div className="chat-controls">
+                <Link to="/history">Chat History</Link>
+                  <div className="signout-wrapper">
+                    <SignOut />
+                 </div>
+            </div>
         </div>
     );
 }

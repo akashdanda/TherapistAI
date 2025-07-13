@@ -1,0 +1,73 @@
+/* Base page styling */
+body {
+  background-color: #121212;
+  color: white;
+  margin: 0;
+  padding: 0;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* Chat history container */
+.chat-history-container {
+  max-width: 800px;
+  margin: 80px auto;
+  padding: 2rem;
+  background-color: #1a1a1a;
+  border-radius: 16px;
+  box-shadow: 0 0 30px rgba(0, 0, 0, 0.4);
+}
+
+/* Heading */
+.chat-history-container h2 {
+  font-size: 2rem;
+  margin-bottom: 1.5rem;
+  color: #ffffff;
+  text-align: center;
+}
+
+/* Individual message block */
+.chat-message {
+  background-color: #1e1e2f;
+  padding: 1rem;
+  margin-bottom: 1rem;
+  border-radius: 10px;
+  border: 1px solid #333;
+  color: #ccc;
+  white-space: pre-wrap;
+  word-wrap: break-word;
+}
+
+/* Role (e.g., user or assistant) */
+.chat-message strong {
+  color: #ff6b00;
+  margin-right: 0.5rem;
+}
+
+/* Last message spacing */
+.chat-message:last-child {
+  margin-bottom: 0;
+}
+
+/* No messages fallback */
+.no-messages {
+  text-align: center;
+  color: #888;
+  font-style: italic;
+  margin-top: 2rem;
+}
+
+/* Scroll behavior if messages get long */
+.chat-history-container {
+  max-height: 80vh;
+  overflow-y: auto;
+}
+
+/* Scrollbar styling (optional) */
+.chat-history-container::-webkit-scrollbar {
+  width: 8px;
+}
+
+.chat-history-container::-webkit-scrollbar-thumb {
+  background-color: #444;
+  border-radius: 8px;
+}

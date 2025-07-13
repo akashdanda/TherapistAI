@@ -4,20 +4,21 @@ import {signInWithEmailAndPassword, createUserWithEmailAndPassword} from 'fireba
 import {getAuth, signInWithPopup, GoogleAuthProvider, signOut} from "firebase/auth";
 const provider = new GoogleAuthProvider();
 import {useNavigate} from 'react-router-dom';
+import '../styles/Auth.css'
 
 function Auth({onAuth}) {
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
     const [isLogin, setIsLogin] = useState(true)
     const navigate = useNavigate();
-    const handleSubmit = () => {
+    const handleSubmit = async () => {
         try {
             let userCredential;
             if(isLogin) {
-                userCredential = signInWithEmailAndPassword(auth, email, password);
+                userCredential = await signInWithEmailAndPassword(auth, email, password);
             
             } else {
-                userCredential = createUserWithEmailAndPassword(auth, email, password);
+                userCredential = await createUserWithEmailAndPassword(auth, email, password);
             }
             if (typeof onAuth === 'function') onAuth(userCredential.user);
             navigate('/dashboard');
@@ -35,26 +36,19 @@ function Auth({onAuth}) {
             alert(err.message);
         }
     }
-    return (
-        <div>
-            <h2>{isLogin ? 'Login' : 'Register'}</h2>
-            <input type="email"
-                    placeholder='Email'
-                    onChange={e => setEmail(e.target.value)}/>
-            <br />
-            <input type = 'password'
-                    placeholder='Password'
-                    onChange ={e => setPassword(e.target.value)}/>
-            <button onClick={handleSubmit}>
-                {isLogin ? 'Login' : 'Register'}
-            </button>
-            <button onClick = {handleGoogleSign}> Sign In With Google</button>
-            <br />
-            <p onClick={() => setIsLogin(!isLogin)}>
-        {isLogin ? 'Click here to create an account' : 'Already have an account? Click here to Login'}
+return (
+  <div className="auth-container">
+    <h2>{isLogin ? 'Login' : 'Register'}</h2>
+    <input type="email" value={email} placeholder="Email" onChange={e => setEmail(e.target.value)} />
+    <input type="password" value={password} placeholder="Password" onChange={e => setPassword(e.target.value)} />
+    <button onClick={handleSubmit}>{isLogin ? 'Login' : 'Register'}</button>
+    <button onClick={handleGoogleSign}>Sign In With Google</button>
+    <p onClick={() => setIsLogin(!isLogin)}>
+      {isLogin ? 'Click here to create an account' : 'Already have an account? Click here to Login'}
     </p>
-        </div>
-    )
+  </div>
+);
+
 
 }
 
