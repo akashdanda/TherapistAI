@@ -5,3 +5,5 @@ node_modules/
 backend/firebase/adminInit.js
 
 backend/.env
+
+frontend/.env
