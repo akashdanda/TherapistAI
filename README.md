@@ -68,7 +68,7 @@ VITE_FIREBASE_MEASUREMENT_ID=your_measurement_id
 
 In backend/.env
 OPENAI_API_KEY=your_openai_api_key
-PORT=5000
+PORT=3001
 
 SETUP INSTRUCTIONS
 
